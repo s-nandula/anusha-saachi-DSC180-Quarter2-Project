@@ -20,7 +20,8 @@ anusha-saachi-DSC180-Quarter2-Project/
 # Usage
 
 ## Run Locally: 
-Please Note: This issue was discussed with both our mentor and TA, and both were made aware that the reproducibility of this code could be affected by the protected environment,
+Please Note: This issue was discussed with both our mentor and TA, and both were made aware that the reproducibility of this code could be affected by the protected environment.
+
 If you wish to run this locally, it will not run unless you have your own SQLite database/ documents. This code is specifically designed to work on the non-exportable data in TDM studios. Also, the dependencies and structure of the code are heavily influenced by the limitations and accessible tools of the TDM studio virtual environment.
 
 1. Clone this repository on your local machine
