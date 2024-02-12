@@ -69,12 +69,10 @@ def insert_data_from_xml(xml_file):
     tree = ET.parse(xml_file)
     root = tree.getroot()
 
-    # Example: Extracting values with handling for missing elements or attributes
     goid = root.find('.//GOID').text if root.find('.//GOID') is not None else None
     title = root.find('.//Title').text if root.find('.//Title') is not None else None
     date = root.find('.//NumericDate').text if root.find('.//NumericDate') is not None else None
     publication = root.find('.//PublisherName').text if root.find('.//PublisherName') is not None else None
-#     text = root.find('.//FullText').text if root.find('.//FullText') is not None else None
     if root.find('.//FullText') is not None:
         text = root.find('.//FullText').text
 
@@ -91,18 +89,12 @@ def insert_data_from_xml(xml_file):
         text = strip_html_tags(text)
     
 
-    # Use the extracted values as needed (e.g., insert into a database)
-#     print("Text:", text)
-    # Extract other fields as needed
-
     # Insert data into SQLite
     cursor.execute('''
         INSERT INTO subset_table (goid, title, date, publication, text)
         VALUES (?, ?, ?, ?, ?)
     ''', (goid, title, date, publication, text))
-    # Adjust the query and parameters based on your table schema
 
-# Specify the directory containing your XML files
 xml_directory = data
 
 # Iterate through XML files in the directory and insert data into SQLite
