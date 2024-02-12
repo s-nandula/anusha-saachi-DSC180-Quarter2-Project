@@ -57,7 +57,7 @@ from concurrent.futures import ThreadPoolExecutor
 def fetch_document_ids(db_path):
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
-    cursor.execute("SELECT id FROM documents")  # Adjust based on your table schema
+    cursor.execute("SELECT id FROM documents")
     ids = [row[0] for row in cursor.fetchall()]
     conn.close()
     return ids
@@ -78,7 +78,7 @@ def fetch_document_by_id(db_path, doc_id):
 
 #paralleizing document retrieval
 def fetch_documents_parallel(db_path, document_ids):
-    with ThreadPoolExecutor(max_workers=10) as executor:  # Adjust max_workers as needed
+    with ThreadPoolExecutor(max_workers=10) as executor:
         documents = list(executor.map(lambda doc_id: fetch_document_by_id(db_path, doc_id), document_ids))
     conn.close()
     return documents
@@ -152,8 +152,6 @@ def search_faiss(query, faiss_index, k=5):
 # In[12]:
 
 #chunking function for the nearest neighbors
-
-
 def chunk_document(document, char_limit=500):
     # Tokenize the document
     tokens = tokenizer.tokenize(document)
@@ -280,7 +278,7 @@ chunks
 
 def generate_answer(top_chunks, query):
     prompt = f"Question: {query}\n\nContext:\n"
-    for chunk in top_chunks:  # Adjust as needed
+    for chunk in top_chunks:
         prompt += chunk + "\n\n"
     response = openai.chat.completions.create(
   model="gpt-3.5-turbo",
