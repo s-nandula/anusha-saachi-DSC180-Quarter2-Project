@@ -17,9 +17,9 @@ create_database(db_name)
 
 import sqlite3
 
-# Replace 'your_database.db' with the path to your SQLite database file
+# Replace 'your_database.db' with the path to your SQLite database file, in our case our data is in a protected envionrment so we can not upload it to this github.
 db_path = 'documents.db'
-# Replace 'table_name' with the name of your table
+# Replace 'table_name' with the name of your table, ours is documents
 table_name = 'documents'
 
 # Connect to the SQLite database
@@ -35,7 +35,7 @@ rows_count = cursor.fetchone()[0]
 
 print(f"Number of rows in {table_name}: {rows_count}")
 
-# Don't forget to close the connection
+# close the connection
 conn.close()
 
 
@@ -53,7 +53,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 # In[4]:
 
-
+#function to fetch document ids
 def fetch_document_ids(db_path):
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
@@ -65,7 +65,7 @@ def fetch_document_ids(db_path):
 
 # In[5]:
 
-
+#function to fetch document text by id
 def fetch_document_by_id(db_path, doc_id):
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
@@ -76,7 +76,7 @@ def fetch_document_by_id(db_path, doc_id):
 
 # In[6]:
 
-
+#paralleizing document retrieval
 def fetch_documents_parallel(db_path, document_ids):
     with ThreadPoolExecutor(max_workers=10) as executor:  # Adjust max_workers as needed
         documents = list(executor.map(lambda doc_id: fetch_document_by_id(db_path, doc_id), document_ids))
@@ -113,7 +113,7 @@ def encode(texts, batch_size=32):
 # In[9]:
 
 
-# Create a quantized FAISS index
+# quantized FAISS index
 def create_quantized_faiss_index(encoded_docs):
     dimension = encoded_docs.shape[1]
     nlist = min(len(encoded_docs), 2048)
@@ -129,20 +129,19 @@ def create_quantized_faiss_index(encoded_docs):
 
 
 def create_quantized_faiss_index_chunks(encoded_docs):
-    dimension = encoded_docs.shape[1]  # Dimension of document embeddings
-    index = faiss.IndexFlatL2(dimension)  # Create a Flat L2 index
+    dimension = encoded_docs.shape[1] 
+    index = faiss.IndexFlatL2(dimension)  
     
-    # FAISS expects the data type to be float32
     if encoded_docs.dtype != np.float32:
         encoded_docs = encoded_docs.astype(np.float32)
     
-    index.add(encoded_docs)  # Add document vectors to the index
+    index.add(encoded_docs) 
     return index
 
 
 # In[90]:
 
-
+#search function for the query
 def search_faiss(query, faiss_index, k=5):
     faiss_index.nprobe = 10
     encoded_query = encode(query)
@@ -152,12 +151,8 @@ def search_faiss(query, faiss_index, k=5):
 
 # In[12]:
 
+#chunking function for the nearest neighbors
 
-def chunk_document(document, chunk_size=500):
-    tokens = tokenizer.tokenize(document)
-    max_chunk_length = chunk_size - tokenizer.num_special_tokens_to_add()  # Account for special tokens
-    chunked_texts = [' '.join(tokens[i:i + max_chunk_length]) for i in range(0, len(tokens), max_chunk_length)]
-    return chunked_texts
 
 def chunk_document(document, char_limit=500):
     # Tokenize the document
@@ -169,20 +164,14 @@ def chunk_document(document, char_limit=500):
     current_chunk = ""
     
     for token_str in token_strs:
-        # Predict the length of the current chunk if the current token is added
-        # Adding 1 for the space that will be added between words
         new_chunk_length = len(current_chunk) + len(token_str) + 1  
         
-        # Check if adding the current token would exceed the character limit
         if new_chunk_length <= char_limit:
-            # Add the token to the current chunk
             current_chunk = f"{current_chunk} {token_str}".strip()
         else:
-            # If the current chunk is full, add it to the list and start a new one
             chunked_texts.append(current_chunk)
-            current_chunk = token_str  # Start new chunk with the current token
+            current_chunk = token_str 
             
-    # Add the last chunk if it's not empty
     if current_chunk:
         chunked_texts.append(current_chunk)
     
@@ -199,7 +188,7 @@ def get_top_documents_and_chunk(top_chunk_ids):
 
 # In[13]:
 
-
+#From here down is a usecase
 db_path = 'documents.db'
 document_ids = fetch_document_ids(db_path)
 
@@ -232,13 +221,6 @@ query = "Rivian"
 # In[87]:
 
 
-i = 0
-for j in documents:
-    if 'Rivian' in j:
-        print(i)
-    i = i +1 
-
-
 # In[91]:
 
 
@@ -260,7 +242,7 @@ documents[331]
 # In[72]:
 
 
-openai.api_key = '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'
+openai.api_key = 'YOUR API KEY (ours is not allowed to be posted)'
 
 
 # In[73]:
