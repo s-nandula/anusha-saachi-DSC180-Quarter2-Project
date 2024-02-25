@@ -31,6 +31,9 @@ If you wish to run this locally, it will not run unless you have your own SQLite
 5. Use End-to-End--Database-Creation.py to create your sqlite table
 6. Use search.py to execute the search algorithm; replace "query" with the query you would like to run the search algorithm on.
 
+# Website
+
+https://saachishenoy.github.io/Capstone-Website/index.html
 
 ## Requirements
 1) Python 3
