@@ -1,19 +1,41 @@
-# Overview 
+# Enhancing Historical Understanding with Retrieval Augmented Generation
 
 This Quarter 2 Project attempts to address historical information retrieval by integrating Retrieval Augmented Generation (RAG) and Large Language Models (LLMs) with Semantic Search. It aims to overcome the limitations of conventional search methods by searching from a range of historical news sources to ensure the credibility and relevance of the information provided.
 
 
+# Objectives
+- Improving Information Access: Enhance accessibility to accurate historical data through innovative search methodologies.
+- Addressing Search Engine Limitations: Offer a reliable source of historical information, circumventing the limitations of conventional search engines.
+- Providing an Educational Tool: Support educational and research initiatives by delivering comprehensive historical context and reliable sources.
+- Catering to Specific Historical Inquiries: Provide targeted responses to users seeking precise historical information.
+- Ensuring Data Integrity and Transparency: Maintain high standards of data integrity and transparency throughout the project.
 
-
+# Dataset
+Our curated dataset consists of newspaper data from ProQuest TDM, filtered by articles only, spanning the years 1925 to 1966. It includes publications like the Chicago Tribune, Los Angeles Times, New York Times, Wall Street Journal, and Washington Post, focusing on optimizing space and memory costs by excluding non-article items.
 
 
 # Project Structure
 The repository is organized as follows:
 ```
 anusha-saachi-DSC180-Quarter2-Project/
-├─ search.py
-├─ End-to-End--Database-Creation.py
+├─ Current Workflow
+├─ ├─ Create_Chroma_DB.ipynb
+├─ ├─ RAG_Pipeline (1).ipynb
+├─ ├─ SQLite-Database-Creation.ipynb
+├─ Previous Iterations
+├─ ├─ Data_Cleaning_Trial_Dummy_Data.ipynb
+├─ ├─ Llamas-test-Notebook.ipynb
+├─ ├─  Previous_Methodology_Create_Embeddings.ipynb
+├─ ├─ Previous_Methodology_Search.ipynb
+├─ website
+├─ ├─ index.html
+├─ ├─ style.css
+├─ ├─ script.js
 ├─ README.md
+├─ Run_This.ipynb
+├─ constants.py
+├─ main.py
+├─ utils.py
 
 ```
 
