@@ -6,14 +6,13 @@ Although the amount of resources available on the internet seems to be growing d
 
 
 # Objectives
-- Improving Information Access: Enhance accessibility to accurate historical data through innovative search methodologies.
-- Addressing Search Engine Limitations: Offer a reliable source of historical information, circumventing the limitations of conventional search engines.
-- Providing an Educational Tool: Support educational and research initiatives by delivering comprehensive historical context and reliable sources.
-- Catering to Specific Historical Inquiries: Provide targeted responses to users seeking precise historical information.
-- Ensuring Data Integrity and Transparency: Maintain high standards of data integrity and transparency throughout the project.
+- Addressing Search Engine Limitations:Alleviate the limitations of conventional search engines by offering users a curated database of historical information.
+- Providing an Educational Tool:Support educational and research initiatives by providing comprehensive historical context.
+- Addressing Specific Historical Inquiries:Cater to the needs of users seeking precise historical information by offering targeted responses to their inquiries.
+
 
 # Dataset
-Our curated dataset consists of newspaper data from ProQuest TDM, filtered by articles only, spanning the years 1925 to 1966. It includes publications like the Chicago Tribune, Los Angeles Times, New York Times, Wall Street Journal, and Washington Post, focusing on optimizing space and memory costs by excluding non-article items.
+Our curated dataset consists of newspaper data from ProQuest TDM, filtered by articles only, spanning the years 1925 to 1929. It includes publications like the Chicago Tribune, Los Angeles Times, New York Times, Wall Street Journal, and Washington Post, focusing on optimizing space and memory costs by excluding non-article items.
 
 
 # Project Structure
@@ -54,19 +53,28 @@ To use the question-answering system:
     Email: tdmstudio@clarivate.com
     PW:  UCSDproject2024
 4. Head to Workbench #1230
-5. Run the Run_This.ipynb notebook (note the first search after starting the kernel may be slow, but it should speed up subsequently)
+5. Run the ```Run_This.ipynb``` notebook (note: the first search after starting the kernel may be slow, but it should speed up subsequently)
 6. When prompted, enter your query and wait for the system to process and return an answer.
 
 # Files Description
-constants.py: Contains the configuration constants for the model, tokenizer, and persistence directory paths.
-utils.py: Provides utility functions for initializing embeddings, vector database, language model, and the QA pipeline.
-main.py: The main script that brings together all components to process user queries and generate answers.
-Run_This.ipynb: A Jupyter notebook designed to demonstrate the project's functionality in an interactive environment.
+- constants.py: Contains the configuration constants for the model, tokenizer, and persistence directory paths.
+- utils.py: Provides utility functions for initializing embeddings, vector database, language model, and the QA pipeline.
+- main.py: The main script that brings together all components to process user queries and generate answers.
+- Run_This.ipynb: A Jupyter notebook designed to demonstrate the project's functionality in an interactive environment.
+- README.md: A Markdown file providing an overview of the project, including its purpose, how to set it up, and how to use it.
+- website: A folder containing the files/code used to set up the website.
+- Previous Iterations: A folder containing the previous methodology, notebooks used to test technologies, and former versions of the tool.
+    - Data_Cleaning_Trial_Dummy_Data.ipynb: A  notebook that  focuses on experimenting with data-cleaning techniques using dummy data.
+    - Llamas-test-Notebook.ipynb: This notebook is a test of the 'llamas' LLM to experiment with the package.
+    - Previous_Methodology_Create_Embeddings.ipynb: A notebook detailing a previous methodology for creating embeddings.
+    - Previous_Methodology_Search.ipynb: This notebook demonstrates the former end-to-end methodology using previously created embeddings.
+ - Current Workflow: The files outline/display the current methodology/workflow.
+    - Create_Chroma_DB.ipynb: A Jupyter notebook used for creating a chroma vector database from article files.
+    - RAG_Pipeline (1).ipynb: A notebook implementing the Retrieval-Augmented Generation (RAG) Pipeline for generating answers by combining a retrieval search with a generative model.
+    - SQLite-Database-Creation.ipynb: This notebook is responsible for the creation and initialization of an SQLite database for articles and metadata.
+
 
 # Website
 
 https://saachishenoy.github.io/Capstone-Website/index.html
 
-## Requirements
-1) Python 3
-2) Libraries listed in search.py and End-to-End--Database-Creation.py
