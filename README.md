@@ -53,7 +53,7 @@ To use the question-answering system:
     Email: tdmstudio@clarivate.com
     PW:  UCSDproject2024
 4. Head to Workbench #1230
-5. Run the ```Run_This.ipynb``` notebook (note: the first search after starting the kernel may be slow, but it should speed up subsequently)
+5. Run the ```Run_This.ipynb``` notebook (note: the first search after starting the kernel may be slow, but it should speed up subsequently, please be patient as millions of documents are being processed)
 6. When prompted, enter your query and wait for the system to process and return an answer.
 
 # Files Description
